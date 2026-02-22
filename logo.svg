@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 70" width="280" height="70">
+  <defs>
+    <linearGradient id="underline-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e8e077" stop-opacity="0"/>
+      <stop offset="15%" stop-color="#e8e077"/>
+      <stop offset="40%" stop-color="#f0e868"/>
+      <stop offset="60%" stop-color="#c8df7a"/>
+      <stop offset="80%" stop-color="#b0d890"/>
+      <stop offset="100%" stop-color="#b0d890" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;800&amp;display=swap');
+  </style>
+  <text x="140" y="44" text-anchor="middle" font-family="'Outfit', sans-serif" fill="#1d1d1f">
+    <tspan font-weight="300" font-size="42" letter-spacing="1">Law</tspan><tspan font-weight="800" font-size="42" letter-spacing="2">BEAM</tspan>
+  </text>
+  <rect x="40" y="56" width="200" height="4" rx="2" fill="url(#underline-grad)"/>
+</svg>
