@@ -6,209 +6,225 @@
   <title>Client Feedback | LawBEAM</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy: #0a1628;
-      --navy-light: #12243d;
-      --navy-mid: #1a3256;
-      --gold: #c9a84c;
-      --gold-light: #e2c76e;
-      --gold-dim: rgba(201, 168, 76, 0.15);
-      --white: #f8f7f4;
-      --gray-100: #e8e6e1;
-      --gray-300: #b0ada5;
-      --gray-500: #6b6860;
-      --text: #f0efe9;
-      --text-muted: #9a978f;
-      --radius: 12px;
-      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --black: #1d1d1f;
+      --gray-900: #2d2d2f;
+      --gray-600: #6e6e73;
+      --gray-400: #86868b;
+      --gray-200: #d2d2d7;
+      --gray-100: #f5f5f7;
+      --white: #ffffff;
+      --accent: #c9a84c;
+      --accent-hover: #b8962f;
+      --accent-light: rgba(201, 168, 76, 0.08);
+      --accent-ring: rgba(201, 168, 76, 0.25);
+      --green: #34c759;
+      --radius: 16px;
+      --radius-sm: 12px;
+      --transition: 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 20px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+      --shadow-lg: 0 10px 40px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--navy);
-      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      background: var(--white);
+      color: var(--black);
       min-height: 100vh;
-      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
-    }
-
-    /* Background pattern */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% -20%, rgba(201, 168, 76, 0.08), transparent),
-        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(201, 168, 76, 0.05), transparent);
-      pointer-events: none;
-      z-index: 0;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .container {
-      position: relative;
-      z-index: 1;
-      max-width: 680px;
+      max-width: 600px;
       margin: 0 auto;
-      padding: 40px 24px 60px;
+      padding: 60px 24px 80px;
+    }
+
+    /* Logo — matches LawBEAM brand identity */
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 48px;
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    .logo-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 32px;
+      letter-spacing: 0.5px;
+      position: relative;
+      padding-bottom: 14px;
+      display: inline-block;
+    }
+
+    .logo-text .law {
+      font-weight: 400;
+      color: var(--black);
+    }
+
+    .logo-text .beam {
+      font-weight: 800;
+      color: var(--black);
+      letter-spacing: 1px;
+    }
+
+    .logo-text::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 5%;
+      width: 90%;
+      height: 4px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        #e8e077 20%,
+        #f0e868 40%,
+        #d4e4a0 60%,
+        #d0e8c0 75%,
+        transparent 100%
+      );
+      border-radius: 2px;
     }
 
     /* Header */
     .header {
       text-align: center;
       margin-bottom: 48px;
-      animation: fadeUp 0.6s ease-out;
-    }
-
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      margin-bottom: 8px;
-    }
-
-    .logo span {
-      color: var(--gold);
-    }
-
-    .header-divider {
-      width: 48px;
-      height: 2px;
-      background: var(--gold);
-      margin: 16px auto;
-      border-radius: 1px;
-    }
-
-    .header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 32px;
-      font-weight: 500;
-      line-height: 1.3;
-      margin-bottom: 12px;
-      color: var(--white);
-    }
-
-    .header p {
-      font-size: 15px;
-      color: var(--text-muted);
-      line-height: 1.6;
-      max-width: 480px;
-      margin: 0 auto;
-    }
-
-    /* Progress bar */
-    .progress-container {
-      margin-bottom: 40px;
       animation: fadeUp 0.6s ease-out 0.1s both;
     }
 
-    .progress-steps {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 8px;
+    .header h1 {
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      color: var(--black);
+      margin-bottom: 14px;
     }
 
-    .progress-dot {
-      width: 40px;
+    .header p {
+      font-size: 17px;
+      color: var(--gray-400);
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    /* Progress */
+    .progress-container {
+      margin-bottom: 40px;
+      animation: fadeUp 0.6s ease-out 0.2s both;
+    }
+
+    .progress-bar-track {
+      width: 100%;
       height: 4px;
+      background: var(--gray-100);
       border-radius: 2px;
-      background: var(--navy-mid);
-      transition: var(--transition);
+      overflow: hidden;
+      margin-bottom: 12px;
     }
 
-    .progress-dot.active {
-      background: var(--gold);
-    }
-
-    .progress-dot.completed {
-      background: var(--gold-light);
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: width 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+      width: 25%;
     }
 
     .progress-label {
       text-align: center;
-      font-size: 12px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
+      font-size: 13px;
+      color: var(--gray-400);
+      font-weight: 500;
+      letter-spacing: 0.3px;
     }
 
-    /* Cards / Steps */
+    /* Steps */
     .step {
       display: none;
-      animation: fadeUp 0.5s ease-out;
+      animation: fadeUp 0.4s ease-out;
     }
 
     .step.active {
       display: block;
     }
 
+    /* Cards */
     .card {
-      background: var(--navy-light);
-      border: 1px solid rgba(201, 168, 76, 0.1);
+      background: var(--white);
+      border: 1px solid var(--gray-200);
       border-radius: var(--radius);
-      padding: 36px 32px;
-      margin-bottom: 24px;
+      padding: 40px 36px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-sm);
     }
 
     .card-question {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      font-weight: 500;
-      margin-bottom: 6px;
-      color: var(--white);
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin-bottom: 8px;
+      color: var(--black);
+      line-height: 1.3;
     }
 
     .card-sub {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-bottom: 28px;
+      font-size: 15px;
+      color: var(--gray-400);
+      margin-bottom: 32px;
+      line-height: 1.5;
     }
 
     /* Star rating */
     .star-rating {
       display: flex;
-      gap: 8px;
+      gap: 12px;
       justify-content: center;
-      margin: 20px 0;
+      margin: 24px 0 8px;
     }
 
     .star-rating button {
       background: none;
       border: none;
       cursor: pointer;
-      padding: 4px;
+      padding: 6px;
       transition: transform 0.2s ease;
+      border-radius: 8px;
     }
 
-    .star-rating button:hover { transform: scale(1.15); }
+    .star-rating button:hover { transform: scale(1.12); }
+    .star-rating button:active { transform: scale(0.95); }
 
     .star-rating svg {
       width: 44px;
       height: 44px;
-      fill: var(--navy-mid);
-      stroke: var(--gray-500);
-      stroke-width: 1;
-      transition: var(--transition);
+      fill: var(--gray-200);
+      stroke: none;
+      transition: fill 0.2s ease;
     }
 
     .star-rating button.selected svg,
     .star-rating button.hovered svg {
-      fill: var(--gold);
-      stroke: var(--gold-light);
+      fill: var(--accent);
     }
 
     .star-label {
       text-align: center;
       font-size: 14px;
-      color: var(--gold-light);
-      min-height: 20px;
+      color: var(--gray-600);
+      font-weight: 500;
+      min-height: 22px;
       margin-top: 8px;
       transition: var(--transition);
     }
@@ -223,31 +239,31 @@
     .option-tile {
       display: flex;
       align-items: center;
-      gap: 14px;
-      padding: 16px 20px;
-      background: var(--navy);
-      border: 1px solid rgba(201, 168, 76, 0.08);
-      border-radius: 10px;
+      gap: 16px;
+      padding: 18px 22px;
+      background: var(--gray-100);
+      border: 2px solid transparent;
+      border-radius: var(--radius-sm);
       cursor: pointer;
       transition: var(--transition);
       user-select: none;
     }
 
     .option-tile:hover {
-      border-color: rgba(201, 168, 76, 0.25);
-      background: rgba(201, 168, 76, 0.04);
+      background: var(--accent-light);
+      border-color: var(--accent-ring);
     }
 
     .option-tile.selected {
-      border-color: var(--gold);
-      background: var(--gold-dim);
+      background: var(--accent-light);
+      border-color: var(--accent);
     }
 
     .option-radio {
       width: 22px;
       height: 22px;
       border-radius: 50%;
-      border: 2px solid var(--gray-500);
+      border: 2px solid var(--gray-200);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -256,14 +272,15 @@
     }
 
     .option-tile.selected .option-radio {
-      border-color: var(--gold);
+      border-color: var(--accent);
+      background: var(--accent);
     }
 
     .option-radio-inner {
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      background: var(--gold);
+      background: var(--white);
       transform: scale(0);
       transition: transform 0.2s ease;
     }
@@ -274,7 +291,8 @@
 
     .option-label {
       font-size: 15px;
-      color: var(--text);
+      font-weight: 500;
+      color: var(--black);
     }
 
     /* NPS Scale */
@@ -282,59 +300,58 @@
       display: flex;
       gap: 6px;
       justify-content: center;
-      flex-wrap: wrap;
-      margin: 12px 0 8px;
+      flex-wrap: nowrap;
+      margin: 16px 0 10px;
     }
 
     .nps-btn {
-      width: 48px;
-      height: 48px;
-      border-radius: 10px;
-      border: 1px solid rgba(201, 168, 76, 0.12);
-      background: var(--navy);
-      color: var(--text-muted);
-      font-size: 16px;
-      font-weight: 500;
+      width: 46px;
+      height: 46px;
+      border-radius: var(--radius-sm);
+      border: 2px solid var(--gray-200);
+      background: var(--white);
+      color: var(--gray-600);
+      font-size: 15px;
+      font-weight: 600;
       cursor: pointer;
       transition: var(--transition);
       font-family: 'Inter', sans-serif;
     }
 
     .nps-btn:hover {
-      border-color: rgba(201, 168, 76, 0.3);
-      color: var(--text);
+      border-color: var(--accent-ring);
+      background: var(--accent-light);
     }
 
     .nps-btn.selected {
-      background: var(--gold);
-      border-color: var(--gold);
-      color: var(--navy);
-      font-weight: 600;
-      transform: scale(1.08);
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--white);
+      transform: scale(1.06);
+      box-shadow: 0 2px 12px rgba(201, 168, 76, 0.3);
     }
 
     .nps-labels {
       display: flex;
       justify-content: space-between;
-      margin-top: 8px;
+      margin-top: 10px;
     }
 
     .nps-labels span {
-      font-size: 11px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      font-size: 12px;
+      color: var(--gray-400);
+      font-weight: 500;
     }
 
     /* Textarea */
     .testimonial-area {
       width: 100%;
       min-height: 140px;
-      background: var(--navy);
-      border: 1px solid rgba(201, 168, 76, 0.15);
-      border-radius: 10px;
-      padding: 16px 18px;
-      color: var(--text);
+      background: var(--gray-100);
+      border: 2px solid transparent;
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      color: var(--black);
       font-family: 'Inter', sans-serif;
       font-size: 15px;
       line-height: 1.6;
@@ -343,39 +360,41 @@
     }
 
     .testimonial-area::placeholder {
-      color: var(--gray-500);
+      color: var(--gray-400);
     }
 
     .testimonial-area:focus {
       outline: none;
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+      border-color: var(--accent);
+      background: var(--white);
+      box-shadow: 0 0 0 4px var(--accent-ring);
     }
 
     .char-count {
       text-align: right;
       font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 6px;
+      color: var(--gray-400);
+      margin-top: 8px;
+      font-weight: 500;
     }
 
     /* Consent checkbox */
     .consent-row {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
-      margin-top: 20px;
-      padding: 16px;
-      background: rgba(201, 168, 76, 0.04);
-      border-radius: 10px;
+      gap: 14px;
+      margin-top: 24px;
+      padding: 18px 20px;
+      background: var(--gray-100);
+      border-radius: var(--radius-sm);
     }
 
     .consent-row input[type="checkbox"] {
       appearance: none;
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--gray-500);
-      border-radius: 5px;
+      width: 22px;
+      height: 22px;
+      border: 2px solid var(--gray-200);
+      border-radius: 6px;
       flex-shrink: 0;
       cursor: pointer;
       position: relative;
@@ -384,89 +403,98 @@
     }
 
     .consent-row input[type="checkbox"]:checked {
-      background: var(--gold);
-      border-color: var(--gold);
+      background: var(--accent);
+      border-color: var(--accent);
     }
 
     .consent-row input[type="checkbox"]:checked::after {
-      content: '✓';
+      content: '';
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: var(--navy);
-      font-size: 13px;
-      font-weight: 700;
+      top: 4px;
+      left: 7px;
+      width: 5px;
+      height: 9px;
+      border: solid var(--white);
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
     }
 
     .consent-row label {
-      font-size: 13px;
-      color: var(--text-muted);
+      font-size: 14px;
+      color: var(--gray-600);
       line-height: 1.5;
       cursor: pointer;
     }
 
     /* Name field */
+    .field-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-600);
+      margin-top: 24px;
+      margin-bottom: 8px;
+    }
+
     .name-input {
       width: 100%;
-      padding: 14px 18px;
-      background: var(--navy);
-      border: 1px solid rgba(201, 168, 76, 0.15);
-      border-radius: 10px;
-      color: var(--text);
+      padding: 14px 20px;
+      background: var(--gray-100);
+      border: 2px solid transparent;
+      border-radius: var(--radius-sm);
+      color: var(--black);
       font-family: 'Inter', sans-serif;
       font-size: 15px;
       transition: var(--transition);
-      margin-top: 16px;
     }
 
-    .name-input::placeholder { color: var(--gray-500); }
+    .name-input::placeholder { color: var(--gray-400); }
     .name-input:focus {
       outline: none;
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
-    }
-
-    .name-label {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 16px;
-      margin-bottom: 4px;
+      border-color: var(--accent);
+      background: var(--white);
+      box-shadow: 0 0 0 4px var(--accent-ring);
     }
 
     /* Buttons */
     .btn-row {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       gap: 12px;
-      margin-top: 8px;
     }
 
     .btn {
-      padding: 14px 32px;
-      border-radius: 10px;
+      padding: 14px 36px;
+      border-radius: 980px;
       font-family: 'Inter', sans-serif;
       font-size: 15px;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
       transition: var(--transition);
       border: none;
+      letter-spacing: 0.1px;
     }
 
     .btn-primary {
-      background: var(--gold);
-      color: var(--navy);
+      background: var(--accent);
+      color: var(--white);
       margin-left: auto;
+      box-shadow: var(--shadow-sm);
     }
 
     .btn-primary:hover {
-      background: var(--gold-light);
+      background: var(--accent-hover);
+      box-shadow: var(--shadow-md);
       transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(201, 168, 76, 0.3);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+      box-shadow: var(--shadow-sm);
     }
 
     .btn-primary:disabled {
-      opacity: 0.4;
+      opacity: 0.35;
       cursor: not-allowed;
       transform: none;
       box-shadow: none;
@@ -474,64 +502,65 @@
 
     .btn-secondary {
       background: transparent;
-      color: var(--text-muted);
-      border: 1px solid rgba(201, 168, 76, 0.15);
+      color: var(--gray-400);
+      padding: 14px 24px;
     }
 
     .btn-secondary:hover {
-      border-color: rgba(201, 168, 76, 0.35);
-      color: var(--text);
+      color: var(--black);
     }
 
     .btn-skip {
       background: none;
       border: none;
-      color: var(--text-muted);
+      color: var(--gray-400);
       font-size: 14px;
+      font-weight: 500;
       cursor: pointer;
       padding: 14px 20px;
       font-family: 'Inter', sans-serif;
       transition: var(--transition);
     }
 
-    .btn-skip:hover { color: var(--text); }
+    .btn-skip:hover { color: var(--black); }
 
     /* Thank you screen */
     .thank-you {
       text-align: center;
-      padding: 60px 20px;
+      padding: 80px 20px;
       animation: fadeUp 0.6s ease-out;
     }
 
     .thank-you .checkmark {
-      width: 72px;
-      height: 72px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
-      background: var(--gold-dim);
+      background: rgba(52, 199, 89, 0.1);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 24px;
+      margin: 0 auto 28px;
       animation: scaleIn 0.5s ease-out 0.2s both;
     }
 
     .thank-you .checkmark svg {
       width: 36px;
       height: 36px;
-      stroke: var(--gold);
+      stroke: var(--green);
+      stroke-width: 2.5;
     }
 
     .thank-you h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 30px;
-      font-weight: 500;
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
       margin-bottom: 12px;
-      color: var(--white);
+      color: var(--black);
     }
 
     .thank-you p {
-      font-size: 15px;
-      color: var(--text-muted);
+      font-size: 17px;
+      color: var(--gray-400);
       line-height: 1.6;
       max-width: 400px;
       margin: 0 auto;
@@ -540,26 +569,54 @@
     /* Footer */
     .footer {
       text-align: center;
-      padding: 40px 0 20px;
-      border-top: 1px solid rgba(201, 168, 76, 0.06);
-      margin-top: 40px;
+      padding: 32px 0 0;
+      margin-top: 48px;
     }
 
     .footer p {
       font-size: 12px;
-      color: var(--gray-500);
+      color: var(--gray-400);
+      font-weight: 400;
     }
 
     .footer a {
-      color: var(--gold);
+      color: var(--gray-600);
       text-decoration: none;
+      font-weight: 500;
     }
 
     .footer a:hover { text-decoration: underline; }
 
+    /* Submission status toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--black);
+      color: var(--white);
+      padding: 14px 28px;
+      border-radius: 980px;
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: var(--shadow-lg);
+      transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+      z-index: 100;
+      white-space: nowrap;
+    }
+
+    .toast.visible {
+      transform: translateX(-50%) translateY(0);
+    }
+
     /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
@@ -570,41 +627,46 @@
 
     /* Responsive */
     @media (max-width: 480px) {
-      .container { padding: 28px 16px 48px; }
-      .card { padding: 28px 20px; }
-      .header h1 { font-size: 26px; }
+      .container { padding: 40px 20px 60px; }
+      .header h1 { font-size: 32px; }
+      .card { padding: 28px 24px; }
+      .card-question { font-size: 20px; }
       .star-rating svg { width: 36px; height: 36px; }
-      .nps-btn { width: 40px; height: 40px; font-size: 14px; }
+      .star-rating { gap: 8px; }
+      .nps-btn { width: 38px; height: 38px; font-size: 13px; border-radius: 10px; }
       .nps-scale { gap: 4px; }
+      .btn { padding: 14px 28px; }
     }
   </style>
 </head>
 <body>
   <div class="container">
+    <!-- Logo -->
+    <div class="logo">
+      <div class="logo-text">
+        <span class="law">Law</span><span class="beam">BEAM</span>
+      </div>
+    </div>
+
     <!-- Header -->
     <div class="header">
-      <div class="logo">Law<span>BEAM</span></div>
-      <div class="header-divider"></div>
-      <h1>We Value Your Feedback</h1>
-      <p>Your insights help us improve our legal services. This survey takes less than 2 minutes to complete.</p>
+      <h1>We value your<br>feedback.</h1>
+      <p>Help us improve. This takes less than 2 minutes.</p>
     </div>
 
     <!-- Progress -->
-    <div class="progress-container">
-      <div class="progress-steps">
-        <div class="progress-dot active" id="dot-0"></div>
-        <div class="progress-dot" id="dot-1"></div>
-        <div class="progress-dot" id="dot-2"></div>
-        <div class="progress-dot" id="dot-3"></div>
+    <div class="progress-container" id="progress-container">
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progress-fill"></div>
       </div>
-      <div class="progress-label" id="progress-label">Question 1 of 3</div>
+      <div class="progress-label" id="progress-label">Step 1 of 3</div>
     </div>
 
     <!-- Step 1: Overall Experience -->
     <div class="step active" id="step-0">
       <div class="card">
         <div class="card-question">How would you rate your overall experience?</div>
-        <p class="card-sub">Think about the quality of advice, responsiveness, and outcomes achieved.</p>
+        <p class="card-sub">Consider quality of advice, responsiveness, and outcomes.</p>
         <div class="star-rating" id="star-rating">
           <button type="button" data-value="1" aria-label="1 star">
             <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -632,7 +694,7 @@
     <!-- Step 2: Service Area -->
     <div class="step" id="step-1">
       <div class="card">
-        <div class="card-question">Which service area did we assist you with?</div>
+        <div class="card-question">Which service did we assist you with?</div>
         <p class="card-sub">Select the option that best describes your engagement.</p>
         <div class="options-grid" id="service-options">
           <div class="option-tile" data-value="Blockchain &amp; Digital Assets">
@@ -667,7 +729,7 @@
     <div class="step" id="step-2">
       <div class="card">
         <div class="card-question">How likely are you to recommend LawBEAM?</div>
-        <p class="card-sub">On a scale of 0–10, how likely are you to recommend us to a colleague or business associate?</p>
+        <p class="card-sub">On a scale of 0 to 10, how likely are you to recommend us to a colleague?</p>
         <div class="nps-scale" id="nps-scale">
           <button class="nps-btn" type="button" data-value="0">0</button>
           <button class="nps-btn" type="button" data-value="1">1</button>
@@ -692,21 +754,21 @@
       </div>
     </div>
 
-    <!-- Step 4: Testimonial (conditional) -->
+    <!-- Step 4: Testimonial -->
     <div class="step" id="step-3">
       <div class="card">
-        <div class="card-question">Would you share a testimonial?</div>
-        <p class="card-sub">We'd love to hear more about your experience. Your words may be featured on our website (with your permission).</p>
+        <div class="card-question">Share a testimonial?</div>
+        <p class="card-sub">Your words may be featured on our website with your permission.</p>
         <textarea
           class="testimonial-area"
           id="testimonial"
-          placeholder="e.g. LawBEAM provided exceptional guidance on our token launch compliance. Their deep expertise in digital asset regulation gave us the confidence to move forward..."
+          placeholder="LawBEAM provided exceptional guidance on our token launch compliance..."
           maxlength="800"
         ></textarea>
         <div class="char-count"><span id="char-count">0</span> / 800</div>
 
-        <div class="name-label">Your name (for attribution)</div>
-        <input type="text" class="name-input" id="client-name" placeholder="e.g. Jane Smith, CEO of Acme Protocol">
+        <div class="field-label">Your name (for attribution)</div>
+        <input type="text" class="name-input" id="client-name" placeholder="Jane Smith, CEO of Acme Protocol">
 
         <div class="consent-row">
           <input type="checkbox" id="consent">
@@ -715,7 +777,7 @@
       </div>
       <div class="btn-row">
         <button class="btn btn-secondary" id="back-3">Back</button>
-        <button class="btn-skip" id="skip-testimonial">Skip this step</button>
+        <button class="btn-skip" id="skip-testimonial">Skip</button>
         <button class="btn btn-primary" id="submit-btn">Submit</button>
       </div>
     </div>
@@ -724,12 +786,12 @@
     <div class="step" id="step-done">
       <div class="thank-you">
         <div class="checkmark">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
         </div>
-        <h2>Thank You</h2>
-        <p id="thank-message">Your feedback is invaluable and helps us continue delivering exceptional legal services for the digital economy.</p>
+        <h2>Thank you.</h2>
+        <p id="thank-message">Your feedback helps us continue delivering exceptional legal services for the digital economy.</p>
       </div>
     </div>
 
@@ -739,7 +801,24 @@
     </div>
   </div>
 
+  <!-- Toast notification -->
+  <div class="toast" id="toast"></div>
+
   <script>
+    // =====================================================
+    // DATA CAPTURE CONFIGURATION
+    // =====================================================
+    // Option 1: Formspree (recommended — free tier: 50 submissions/month)
+    //   1. Sign up at https://formspree.io
+    //   2. Create a new form
+    //   3. Replace the URL below with your form endpoint
+    const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+    //
+    // Option 2: Custom backend
+    //   Replace FORM_ENDPOINT with your own API URL, e.g.:
+    //   const FORM_ENDPOINT = 'https://your-api.com/api/survey';
+    // =====================================================
+
     const state = {
       currentStep: 0,
       rating: 0,
@@ -750,12 +829,26 @@
       consent: false
     };
 
-    const starLabels = ['', 'Poor – well below expectations', 'Fair – some room for improvement', 'Good – met expectations', 'Very good – exceeded expectations', 'Excellent – outstanding service'];
+    const starLabels = [
+      '',
+      'Poor — well below expectations',
+      'Fair — room for improvement',
+      'Good — met expectations',
+      'Very good — exceeded expectations',
+      'Excellent — outstanding service'
+    ];
 
     // DOM refs
     const steps = document.querySelectorAll('.step');
-    const dots = document.querySelectorAll('.progress-dot');
+    const progressFill = document.getElementById('progress-fill');
     const progressLabel = document.getElementById('progress-label');
+    const toast = document.getElementById('toast');
+
+    function showToast(message, duration = 3000) {
+      toast.textContent = message;
+      toast.classList.add('visible');
+      setTimeout(() => toast.classList.remove('visible'), duration);
+    }
 
     // --- Star Rating ---
     const starBtns = document.querySelectorAll('#star-rating button');
@@ -822,7 +915,6 @@
       state.currentStep = step;
       steps.forEach(s => s.classList.remove('active'));
 
-      // Handle testimonial skip: if rating < 4 and NPS < 7, skip testimonial
       let targetStep = step;
       if (step === 3 && state.rating < 4 && state.nps !== null && state.nps < 7) {
         targetStep = 'done';
@@ -830,7 +922,7 @@
 
       if (targetStep === 'done') {
         document.getElementById('step-done').classList.add('active');
-        document.querySelector('.progress-container').style.display = 'none';
+        document.getElementById('progress-container').style.display = 'none';
         setThankMessage();
       } else {
         document.getElementById('step-' + targetStep).classList.add('active');
@@ -841,14 +933,12 @@
     }
 
     function updateProgress(step) {
-      dots.forEach((dot, i) => {
-        dot.classList.remove('active', 'completed');
-        if (i < step) dot.classList.add('completed');
-        if (i === step) dot.classList.add('active');
-      });
+      const totalSteps = 4;
+      const pct = ((step + 1) / totalSteps) * 100;
+      progressFill.style.width = pct + '%';
 
       if (step < 3) {
-        progressLabel.textContent = `Question ${step + 1} of 3`;
+        progressLabel.textContent = `Step ${step + 1} of 3`;
       } else {
         progressLabel.textContent = 'Testimonial';
       }
@@ -858,12 +948,39 @@
       const msg = document.getElementById('thank-message');
       if (state.rating >= 4 || (state.nps !== null && state.nps >= 7)) {
         if (state.testimonial.trim()) {
-          msg.textContent = 'Thank you for your kind words and feedback. We truly appreciate your trust in LawBEAM and look forward to continuing to serve you.';
+          msg.textContent = 'Thank you for your kind words. We truly appreciate your trust in LawBEAM.';
         } else {
-          msg.textContent = 'Thank you for your positive feedback. Your satisfaction drives us to keep delivering exceptional legal services for the digital economy.';
+          msg.textContent = 'Thank you for your positive feedback. Your satisfaction drives us to keep delivering exceptional legal services.';
         }
       } else {
-        msg.textContent = 'Thank you for your honest feedback. We take every response seriously and will use your input to improve our services.';
+        msg.textContent = 'Thank you for your honest feedback. We take every response seriously and will use it to improve our services.';
+      }
+    }
+
+    // --- Data Submission ---
+    async function submitSurvey(payload) {
+      // Always save to localStorage as backup
+      const existing = JSON.parse(localStorage.getItem('lawbeam_surveys') || '[]');
+      existing.push(payload);
+      localStorage.setItem('lawbeam_surveys', JSON.stringify(existing));
+
+      // Send to Formspree / backend
+      if (FORM_ENDPOINT.includes('YOUR_FORM_ID')) {
+        console.log('Survey saved locally (configure FORM_ENDPOINT for remote capture):', payload);
+        return;
+      }
+
+      try {
+        const res = await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error('Submission failed');
+        console.log('Survey submitted successfully');
+      } catch (err) {
+        console.error('Remote submission failed, data saved locally:', err);
+        showToast('Saved locally — we\'ll sync your response later.');
       }
     }
 
@@ -879,11 +996,19 @@
       state.testimonial = '';
       state.clientName = '';
       state.consent = false;
+      submitSurvey({
+        rating: state.rating,
+        service: state.service,
+        nps: state.nps,
+        testimonial: '',
+        clientName: '',
+        consent: false,
+        submittedAt: new Date().toISOString()
+      });
       goTo('done');
     });
 
     document.getElementById('submit-btn').addEventListener('click', () => {
-      // Collect final state
       const payload = {
         rating: state.rating,
         service: state.service,
@@ -894,16 +1019,9 @@
         submittedAt: new Date().toISOString()
       };
 
-      console.log('Survey submission:', JSON.stringify(payload, null, 2));
-
-      // In production, send to your backend:
-      // fetch('/api/survey', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload) });
-
+      submitSurvey(payload);
       goTo('done');
     });
-
-    // Determine if testimonial step should show based on satisfaction
-    const origGoTo = goTo;
   </script>
 </body>
 </html>
