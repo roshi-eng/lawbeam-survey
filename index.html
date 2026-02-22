@@ -6,7 +6,7 @@
   <title>Client Feedback | LawBEAM</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -48,7 +48,7 @@
       padding: 60px 24px 80px;
     }
 
-    /* Logo — matches LawBEAM brand identity */
+    /* Logo */
     .logo {
       display: flex;
       align-items: center;
@@ -57,12 +57,23 @@
       animation: fadeIn 0.6s ease-out;
     }
 
+    .logo img {
+      height: 48px;
+      width: auto;
+      display: block;
+    }
+
+    /* Fallback text logo (shown if logo.png fails to load) */
     .logo-text {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Outfit', 'Inter', sans-serif;
       font-size: 32px;
       letter-spacing: 0.5px;
       position: relative;
       padding-bottom: 14px;
+      display: none;
+    }
+
+    .logo-text.visible {
       display: inline-block;
     }
 
@@ -641,8 +652,9 @@
 </head>
 <body>
   <div class="container">
-    <!-- Logo -->
+    <!-- Logo: upload your logo.png to the repo root -->
     <div class="logo">
+      <img src="logo.png" alt="LawBEAM" onerror="this.style.display='none'; this.nextElementSibling.classList.add('visible');">
       <div class="logo-text">
         <span class="law">Law</span><span class="beam">BEAM</span>
       </div>
